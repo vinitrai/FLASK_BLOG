@@ -31,10 +31,7 @@ def create_app(Config_class = Config):
     login_manager.__init__(app)
     mail.__init__(app)
 
-    from flaskblog.models import User,Post
-    # create the database
-    with app.app_context():
-        db.create_all()
+   
     # register all the blueprints
     from flaskblog.users.routes import users
     from flaskblog.posts.routes import posts 
