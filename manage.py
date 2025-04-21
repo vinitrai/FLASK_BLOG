@@ -1,12 +1,15 @@
 from flaskblog import create_app, db
-from flaskblog.models import User, Post
 from flask_bcrypt import Bcrypt
 
 app = create_app()
 bcrypt = Bcrypt(app)
 
+
+from flaskblog.models import User, Post
+
 with app.app_context():
     db.create_all()
+    print("✅ Tables created successfully.")
 
     # Add dummy users only if no users exist
     if not User.query.first():
@@ -39,6 +42,6 @@ with app.app_context():
         db.session.add_all([post1, post2])
         db.session.commit()
 
-        print("Dummy users and posts added.")
+        print("🚀 Dummy users and posts added.")
     else:
-        print("Database already contains data. No dummy data added.")
+        print("📦 Database already contains data. No dummy data added.")
